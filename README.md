@@ -57,7 +57,7 @@ O **Docas Inteligentes** opera através de um pipeline de dados fluido e contín
 
 
 #### Mapeamento Visual do Pipeline de Dados
-
+```
 flowchart TD
     %% Definição de Cores e Estilos
     classDef entrada fill:#e0f7fa,stroke:#00838f,stroke-width:2px;
@@ -112,8 +112,7 @@ flowchart TD
     Acao3 -.->|Contexto Crítico| Prompt
     Prompt -->|Dados Formatados| API
     API -->|Relatório em Texto| Operador
-    ---
-    
+```
 
 ### 5. Justificativa da Abordagem
 Para o desenvolvimento do núcleo de inteligência deste projeto, foi selecionada a abordagem de **Algoritmos Evolutivos (Genéticos)**.
