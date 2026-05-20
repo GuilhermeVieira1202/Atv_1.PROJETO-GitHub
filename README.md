@@ -61,7 +61,8 @@ O **Docas Inteligentes** opera através de um pipeline de dados fluido e contín
 ---
 
 **Imagem 1: Mapeamento Visual do Pipeline de Dados (Arquitetura)**
-*Fluxo sistêmico em ação: Representação visual desde a captura física dos sensores, passando pelo processamento do threshold otimizado e motor especialista, até a tradução final em linguagem natural pela camada de IA Explicável (XAI).*
+Fluxo sistêmico em ação: Representação visual desde a captura física dos sensores, passando pelo processamento do threshold otimizado e motor especialista, até a tradução final em linguagem natural pela camada de IA Explicável (XAI).
+
 ![Fluxograma de Arquitetura Lógica](assets/images/arquitetura_sistema.png)
 
 ---
