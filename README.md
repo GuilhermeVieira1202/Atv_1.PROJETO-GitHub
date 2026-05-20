@@ -55,59 +55,65 @@ O **Docas Inteligentes** opera através de um pipeline de dados fluido e contín
 2.  **Módulo de Controle (Etapa 2):** Um **Sistema Especialista Baseado em Regras** recebe o limite otimizado pelo algoritmo genético e os dados em tempo real dos sensores (LiDAR/Alinhamento) para ditar a ação física imediata (Avançar, Corrigir Trajetória, Parada de Emergência ou Carregar).
 3.  **Camada Interpretativa:** A **API do Gemini** atua como IA Explicável (XAI). Ela recebe a decisão do motor de controle e o parâmetro otimizado, gerando um prompt de auditoria humanizado que explica ao operador o motivo técnico da ação e o nível de confiabilidade do sistema naquele milissegundo.
 
-````markdown
+
 #### Mapeamento Visual do Pipeline de Dados
 
-```mermaid
-graph TD
+flowchart TD
+    %% Definição de Cores e Estilos
     classDef entrada fill:#e0f7fa,stroke:#00838f,stroke-width:2px;
     classDef otimizacao fill:#fff3e0,stroke:#ef6c00,stroke-width:2px;
     classDef controle fill:#e8eaf6,stroke:#283593,stroke-width:2px;
     classDef saida fill:#fce4ec,stroke:#c2185b,stroke-width:2px;
     classDef humano fill:#f1f8e9,stroke:#33691e,stroke-width:2px;
 
-    subgraph s1 ["1. Coleta de Dados (Entrada)"]
-        S(["Sensores: LiDAR 3D e Ultrassônico"]):::entrada
+    subgraph s1 [1. Coleta de Dados]
+        S([Sensores: LiDAR 3D e Ultrassônico]):::entrada
     end
 
-    subgraph s2 ["2. Inteligência Evolutiva"]
-        AG["Algoritmo Genético"]:::otimizacao
-        Fit["Função de Aptidão"]:::otimizacao
-        AG <-->|Treinamento / Ajuste| Fit
+    subgraph s2 [2. Inteligência Evolutiva]
+        AG[Algoritmo Genético]:::otimizacao
+        Fit[Função de Aptidão]:::otimizacao
+        AG <-->|Treinamento| Fit
     end
 
-    subgraph s3 ["3. Processamento e Controle Especialista"]
-        SE{"Motor de Decisão"}:::controle
-        Acao1["Avançar / Corrigir Trajetória"]:::controle
-        Acao2["Parada Ideal e Carregar"]:::controle
-        Acao3["Parada de Emergência"]:::controle
+    subgraph s3 [3. Controle Especialista]
+        SE{Motor de Decisão}:::controle
+        Acao1[Avançar / Corrigir]:::controle
+        Acao2[Parada Ideal / Carregar]:::controle
+        Acao3[Parada de Emergência]:::controle
     end
 
-    subgraph s4 ["4. Ação Física (Saída)"]
-        A(["Atuadores: Motores e Elevação"]):::saida
+    subgraph s4 [4. Ação Física]
+        A([Atuadores: Motores e Elevação]):::saida
     end
 
-    subgraph s5 ["5. Camada Interpretativa (IA Explicável)"]
-        Prompt["Geração de Prompt de Auditoria"]:::otimizacao
-        API["API Gemini"]:::otimizacao
-        Operador(("Operador de Pátio")):::humano
+    subgraph s5 [5. Camada Interpretativa - XAI]
+        Prompt[Geração de Prompt]:::otimizacao
+        API[API Gemini]:::otimizacao
+        Operador((Operador de Pátio)):::humano
     end
 
-    S -->|Lê: Distância Real e Nuvem de Pontos| SE
-    AG -->|Define: Threshold Otimizado| SE
+    %% Fluxo Principal
+    S -->|Dados Reais| SE
+    AG -->|Threshold Otimizado| SE
+    
+    %% Ramificações de Decisão
     SE -->|Distância > Threshold| Acao1
-    SE -->|Distância = Threshold ideal| Acao2
+    SE -->|Distância = Threshold| Acao2
     SE -->|Obstáculo Detectado| Acao3
-    Acao1 -->|Comando de Tração| A
-    Acao2 -->|Comando de Acoplamento| A
-    Acao3 -->|Frenagem Brusca| A
+    
+    %% Atuação
+    Acao1 -->|Tração| A
+    Acao2 -->|Acoplamento| A
+    Acao3 -->|Frenagem| A
+    
+    %% Fluxo de IA Explicável
     Acao2 -.->|Contexto Operacional| Prompt
     Acao3 -.->|Contexto Crítico| Prompt
-    
     Prompt -->|Dados Formatados| API
-    API -->|Relatório em Linguagem Natural| Operador
-```
-`
+    API -->|Relatório em Texto| Operador
+    ---
+    
 
 ### 5. Justificativa da Abordagem
 Para o desenvolvimento do núcleo de inteligência deste projeto, foi selecionada a abordagem de **Algoritmos Evolutivos (Genéticos)**.
