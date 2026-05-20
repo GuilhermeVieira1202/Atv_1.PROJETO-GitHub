@@ -57,62 +57,14 @@ O **Docas Inteligentes** opera através de um pipeline de dados fluido e contín
 
 
 #### Mapeamento Visual do Pipeline de Dados
-```
-flowchart TD
-    %% Definição de Cores e Estilos
-    classDef entrada fill:#e0f7fa,stroke:#00838f,stroke-width:2px;
-    classDef otimizacao fill:#fff3e0,stroke:#ef6c00,stroke-width:2px;
-    classDef controle fill:#e8eaf6,stroke:#283593,stroke-width:2px;
-    classDef saida fill:#fce4ec,stroke:#c2185b,stroke-width:2px;
-    classDef humano fill:#f1f8e9,stroke:#33691e,stroke-width:2px;
 
-    subgraph s1 [1. Coleta de Dados]
-        S([Sensores: LiDAR 3D e Ultrassônico]):::entrada
-    end
+---
 
-    subgraph s2 [2. Inteligência Evolutiva]
-        AG[Algoritmo Genético]:::otimizacao
-        Fit[Função de Aptidão]:::otimizacao
-        AG <-->|Treinamento| Fit
-    end
+**Imagem 1: Mapeamento Visual do Pipeline de Dados (Arquitetura)**
+*Fluxo sistêmico em ação: Representação visual desde a captura física dos sensores, passando pelo processamento do threshold otimizado e motor especialista, até a tradução final em linguagem natural pela camada de IA Explicável (XAI).*
+![Fluxograma de Arquitetura Lógica](assets/images/arquitetura_sistema.png)
 
-    subgraph s3 [3. Controle Especialista]
-        SE{Motor de Decisão}:::controle
-        Acao1[Avançar / Corrigir]:::controle
-        Acao2[Parada Ideal / Carregar]:::controle
-        Acao3[Parada de Emergência]:::controle
-    end
-
-    subgraph s4 [4. Ação Física]
-        A([Atuadores: Motores e Elevação]):::saida
-    end
-
-    subgraph s5 [5. Camada Interpretativa - XAI]
-        Prompt[Geração de Prompt]:::otimizacao
-        API[API Gemini]:::otimizacao
-        Operador((Operador de Pátio)):::humano
-    end
-
-    %% Fluxo Principal
-    S -->|Dados Reais| SE
-    AG -->|Threshold Otimizado| SE
-    
-    %% Ramificações de Decisão
-    SE -->|Distância > Threshold| Acao1
-    SE -->|Distância = Threshold| Acao2
-    SE -->|Obstáculo Detectado| Acao3
-    
-    %% Atuação
-    Acao1 -->|Tração| A
-    Acao2 -->|Acoplamento| A
-    Acao3 -->|Frenagem| A
-    
-    %% Fluxo de IA Explicável
-    Acao2 -.->|Contexto Operacional| Prompt
-    Acao3 -.->|Contexto Crítico| Prompt
-    Prompt -->|Dados Formatados| API
-    API -->|Relatório em Texto| Operador
-```
+---
 
 ### 5. Justificativa da Abordagem
 Para o desenvolvimento do núcleo de inteligência deste projeto, foi selecionada a abordagem de **Algoritmos Evolutivos (Genéticos)**.
@@ -127,11 +79,11 @@ Para o desenvolvimento do núcleo de inteligência deste projeto, foi selecionad
 ### 6. Evidências Visuais e Desempenho
 *Arquivos armazenados na pasta `/assets/images`.*
 
-**Imagem 1: Gráfico de Evolução da Aptidão (Fitness)**
+**Imagem 2: Gráfico de Evolução da Aptidão (Fitness)**
 *O gráfico demonstra a convergência do Algoritmo Genético ao longo das gerações. O sistema "aprende" rapidamente a fugir das distâncias de colisão (fitness = 0) e estabiliza no threshold ideal para a operação.*
 ![Gráfico de Fitness](assets/images/grafico_aptidao.png)
 
-**Imagem 2: Log de Execução e IA Explicável (XAI)**
+**Imagem 3: Log de Execução e IA Explicável (XAI)**
 *Pipeline em ação: Integração fluida entre o Motor de Decisão Otimizado e o Output Textual gerado pela API do Gemini, provando a mitigação do efeito "Caixa Preta".*
 ![Log de Auditoria do Gemini](assets/images/log_gemini.png)
 
